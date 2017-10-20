@@ -175,7 +175,7 @@ def get_poloniex_ltcusd():
     except:
         return 0.0
 
-api = CoinutAPI("yyyyyy", "xxxxxx")
+api = CoinutAPI("xxxx", "yyyyyyyyy")
 bal = api.balance()
 logger.info("WINN:Balance: LTC=%s, BTC=%s" % (bal['LTC'], bal['BTC']))
 
