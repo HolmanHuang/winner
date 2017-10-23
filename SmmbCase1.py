@@ -39,7 +39,7 @@ class CoinutAPI():
                            digestmod=hashlib.sha256).hexdigest()
             headers = {'X-USER': self.user, "X-SIGNATURE": sig}
 
-        response = requests.post(url, headers=headers, data=content)
+        response = requests.post(url, headers=headers, data=content,timeout=15)
         logger.debug(response.text.strip())
         return response.json()
 
@@ -175,7 +175,7 @@ def get_poloniex_ltcusd():
     except:
         return 0.0
 
-api = CoinutAPI("xxxx", "yyyyyyyyy")
+api = CoinutAPI("xxxxxxxx", "yyyyyyyyy")
 bal = api.balance()
 logger.info("WINN:Balance: LTC=%s, BTC=%s" % (bal['LTC'], bal['BTC']))
 
@@ -203,7 +203,7 @@ while True:
     my_buy_adjust = 0
     my_sell_adjust = 0
     if float(coinut_inst_order_book["buy"][0]["qty"]) > 100 and float(coinut_inst_order_book["sell"][0]["qty"]) < 10:
-        coinut_last_price = float(coinut_ins_order_book["buy"][0]["price"])+0.00001
+        coinut_last_price = float(coinut_inst_order_book["buy"][0]["price"])+0.00001
         my_buy_adjust = 1
         my_sell_adjust = 0
 
